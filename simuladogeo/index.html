@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado de Geografia - Guilherme</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #56ccf2, #2f80ed);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .question {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 700px;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px;
+      background: #fff;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .options button.correct {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .options button.incorrect {
+      background-color: #f44336;
+      color: white;
+    }
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      font-style: italic;
+      color: #ffd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simulado de Geografia</h1>
+  <h2>Feito por Guilherme</h2>
+  <div id="quiz"></div>
+
+  <script>
+    const perguntas = [
+      {
+        pergunta: "O que marcou a Revolução Neolítica?",
+        opcoes: ["Desenvolvimento da agricultura", "Início da escrita", "Criação de máquinas", "Expansão marítima"],
+        correta: 0,
+        explicacao: "A Revolução Neolítica marcou a transição de nômades para agricultores."
+      },
+      {
+        pergunta: "Qual das alternativas representa uma característica do Big Data?",
+        opcoes: ["Lentidão", "Volume", "Desinformação", "Simples análise"],
+        correta: 1,
+        explicacao: "Big Data envolve o volume, velocidade e variedade de dados."
+      },
+      {
+        pergunta: "O que são fake news?",
+        opcoes: ["Notícias engraçadas", "Boatos de amigos", "Informações falsas compartilhadas como verdadeiras", "Propaganda oficial"],
+        correta: 2,
+        explicacao: "Fake news são mentiras espalhadas como se fossem notícias verdadeiras."
+      },
+      {
+        pergunta: "O que é um robô?",
+        opcoes: ["Dispositivo autônomo programável", "Ser humano muito inteligente", "Software de mensagens", "Animal treinado"],
+        correta: 0,
+        explicacao: "Robôs são dispositivos capazes de executar tarefas automaticamente."
+      },
+      {
+        pergunta: "O que a industrialização causou nas fábricas?",
+        opcoes: ["Mais trabalho manual", "Fim da produção", "Uso de máquinas", "Volta da agricultura"],
+        correta: 2,
+        explicacao: "A industrialização substituiu o trabalho manual por máquinas."
+      },
+      {
+        pergunta: "Qual era o objetivo do mercantilismo?",
+        opcoes: ["Gastos públicos", "Lucro com impostos", "Acumular metais preciosos", "Produzir conhecimento"],
+        correta: 2,
+        explicacao: "O mercantilismo buscava acumular ouro e prata."
+      },
+      {
+        pergunta: "Qual é o principal perigo das fake news?",
+        opcoes: ["Divertir as pessoas", "Informar com rapidez", "Causar desinformação e danos sociais", "Ajudar na educação"],
+        correta: 2,
+        explicacao: "As fake news confundem as pessoas e podem causar sérios danos à sociedade."
+      },
+      {
+        pergunta: "O que significa 'volume' no contexto do Big Data?",
+        opcoes: ["Quantidade de pessoas em uma empresa", "Número de robôs por fábrica", "Grande quantidade de dados gerados", "Peso dos arquivos"],
+        correta: 2,
+        explicacao: "Volume é a grande quantidade de dados processados no Big Data."
+      },
+      {
+        pergunta: "Qual das opções é um benefício do uso de robôs?",
+        opcoes: ["Mais erros", "Mais descanso para humanos", "Aumento de impostos", "Criação de papel"],
+        correta: 1,
+        explicacao: "Os robôs realizam tarefas repetitivas, ajudando a aliviar o trabalho humano."
+      },
+      {
+        pergunta: "O que impulsionou as Grandes Navegações?",
+        opcoes: ["Busca por ouro e rotas comerciais", "Desejo de plantar café", "Criação do GPS", "Invenção do telefone"],
+        correta: 0,
+        explicacao: "As Grandes Navegações buscavam novas rotas para comércio e riquezas."
+      },
+
+      // As 30 novas perguntas (cole aqui a parte fornecida anteriormente)
+      // Cole aqui exatamente as 30 perguntas no mesmo formato, copiando de onde te enviei.
+
+      // Exemplo de continuação:
+      {
+        pergunta: "O que é mercantilismo?",
+        opcoes: ["Sistema socialista", "Sistema capitalista", "Sistema econômico de acumulação de riquezas", "Sistema feudal"],
+        correta: 2,
+        explicacao: "O mercantilismo buscava o acúmulo de metais preciosos como forma de riqueza nacional."
+      },
+      {
+        pergunta: "Qual dos seguintes é um dos 3 V's do Big Data?",
+        opcoes: ["Veracidade", "Velocidade", "Viabilidade", "Verificação"],
+        correta: 1,
+        explicacao: "Os 3 V's do Big Data são: Velocidade, Volume e Variedade."
+      },
+      {
+  pergunta: "O que é mercantilismo?",
+  opcoes: ["Sistema socialista", "Sistema capitalista", "Sistema econômico de acumulação de riquezas", "Sistema feudal"],
+  correta: 2,
+  explicacao: "O mercantilismo buscava o acúmulo de metais preciosos como forma de riqueza nacional."
+},
+{
+  pergunta: "Qual dos seguintes é um dos 3 V's do Big Data?",
+  opcoes: ["Veracidade", "Velocidade", "Viabilidade", "Verificação"],
+  correta: 1,
+  explicacao: "Os 3 V's do Big Data são: Velocidade, Volume e Variedade."
+},
+{
+  pergunta: "Por que as fake news são perigosas em tempos de eleição?",
+  opcoes: ["Divertem o eleitorado", "Ajudam a entender política", "Influenciam com mentiras e desinformam", "São sempre verdadeiras"],
+  correta: 2,
+  explicacao: "Fake news podem manipular votos com informações falsas."
+},
+{
+  pergunta: "Qual a principal característica da Revolução Neolítica?",
+  opcoes: ["Uso de tecnologia", "Uso de robôs", "Fixação do homem no território", "Criação de comércio online"],
+  correta: 2,
+  explicacao: "Foi quando os humanos deixaram de ser nômades e passaram a cultivar e criar animais."
+},
+{
+  pergunta: "O que é sedentarismo no contexto da história humana?",
+  opcoes: ["Ficar parado na rua", "Ficar em casa jogando videogame", "Viver em um local fixo", "Viajar constantemente"],
+  correta: 2,
+  explicacao: "No contexto histórico, sedentarismo é viver permanentemente em um só lugar."
+},
+{
+  pergunta: "O que motivou as Grandes Navegações?",
+  opcoes: ["A curiosidade científica", "Busca por ouro, especiarias e novas rotas", "Estudar os polos", "Colonizar Marte"],
+  correta: 1,
+  explicacao: "A Europa queria novas rotas comerciais para especiarias e metais preciosos."
+},
+{
+  pergunta: "Robôs são utilizados para quê?",
+  opcoes: ["Dormir", "Comer", "Realizar tarefas automatizadas", "Pintar quadros artísticos"],
+  correta: 2,
+  explicacao: "Robôs realizam tarefas repetitivas e programadas."
+},
+{
+  pergunta: "O que é uma informação verificada?",
+  opcoes: ["Uma fake news com visual bonito", "Notícia revisada e checada por fontes confiáveis", "Comentário aleatório", "Opinião pessoal"],
+  correta: 1,
+  explicacao: "Informações verificadas são checadas por fontes confiáveis e especialistas."
+},
+{
+  pergunta: "Quais são os três pilares do Big Data?",
+  opcoes: ["Velocidade, Volume e Variedade", "Velocidade, Valor e Visualização", "Versatilidade, Veracidade e Variedade", "Volume, Veracidade e Vacância"],
+  correta: 0,
+  explicacao: "Big Data se baseia em volume, variedade e velocidade."
+},
+{
+  pergunta: "Qual o objetivo do Estado mercantilista?",
+  opcoes: ["Acumular riquezas para o rei", "Distribuir igualmente a riqueza", "Reduzir impostos", "Votar democraticamente"],
+  correta: 0,
+  explicacao: "O Estado centralizava o poder e buscava acumular riquezas."
+},
+{
+  pergunta: "O que significa 'grande volume' em Big Data?",
+  opcoes: ["Poucas informações organizadas", "Documentos físicos", "Gigantesca quantidade de dados", "Mensagens de WhatsApp"],
+  correta: 2,
+  explicacao: "O volume em Big Data é a enorme quantidade de dados gerados constantemente."
+},
+{
+  pergunta: "O que a agricultura trouxe ao ser humano?",
+  opcoes: ["Desemprego", "Viagens", "Sedentarismo", "Vícios"],
+  correta: 2,
+  explicacao: "A agricultura permitiu que o ser humano fixasse moradia."
+},
+{
+  pergunta: "Fake news pode ser evitada como?",
+  opcoes: ["Confiando em qualquer site", "Compartilhando tudo", "Checando fontes confiáveis", "Ignorando tudo"],
+  correta: 2,
+  explicacao: "Devemos sempre verificar se a informação vem de fontes confiáveis."
+},
+{
+  pergunta: "Qual revolução aconteceu antes da industrial?",
+  opcoes: ["Revolução Espacial", "Revolução Francesa", "Revolução Neolítica", "Revolução Comercial"],
+  correta: 2,
+  explicacao: "A Revolução Neolítica antecedeu a Revolução Industrial."
+},
+{
+  pergunta: "Qual característica define um robô?",
+  opcoes: ["Orgânico", "Humano", "Automatizado", "Lento"],
+  correta: 2,
+  explicacao: "Robôs realizam tarefas automaticamente com programação."
+},
+{
+  pergunta: "Qual era a principal riqueza do mercantilismo?",
+  opcoes: ["Terras", "Cavalos", "Metais preciosos", "Conhecimento"],
+  correta: 2,
+  explicacao: "A riqueza era medida pela quantidade de ouro e prata acumulados."
+},
+{
+  pergunta: "Qual das opções abaixo pode ser considerada uma fake news?",
+  opcoes: ["Matéria investigativa", "Notícia de fonte confiável", "Informação distorcida para enganar", "Reportagem documental"],
+  correta: 2,
+  explicacao: "Fake news são mentiras que se passam por verdadeiras."
+},
+{
+  pergunta: "Big Data serve principalmente para:",
+  opcoes: ["Fazer memes", "Controlar redes sociais", "Tomar decisões com base em dados", "Aumentar o preço da internet"],
+  correta: 2,
+  explicacao: "O Big Data ajuda empresas e governos a tomarem decisões inteligentes com dados."
+},
+{
+  pergunta: "A expansão marítima começou principalmente com:",
+  opcoes: ["Brasil", "China", "Portugal e Espanha", "Egito"],
+  correta: 2,
+  explicacao: "Portugal e Espanha foram pioneiros nas navegações oceânicas."
+},
+{
+  pergunta: "A Revolução Neolítica aconteceu quando?",
+  opcoes: ["Na Idade Média", "Na Pré-História", "No Renascimento", "Na Idade Moderna"],
+  correta: 1,
+  explicacao: "Ela ocorreu durante o período da Pré-História."
+},
+{
+  pergunta: "Para que serve um robô na indústria?",
+  opcoes: ["Criar músicas", "Fazer arte", "Automatizar processos", "Consertar carros sozinho"],
+  correta: 2,
+  explicacao: "Robôs ajudam a acelerar a produção automatizando tarefas."
+},
+{
+  pergunta: "Quais os impactos negativos das fake news?",
+  opcoes: ["Aumentam a educação", "Desinformam e causam confusão", "Ensinam história", "São confiáveis"],
+  correta: 1,
+  explicacao: "Fake news confundem a sociedade e causam danos sociais graves."
+},
+{
+  pergunta: "Como se chama o sistema em que o Estado controla a economia?",
+  opcoes: ["Liberalismo", "Mercantilismo", "Capitalismo", "Feudalismo"],
+  correta: 1,
+  explicacao: "No mercantilismo o Estado interfere e regula fortemente a economia."
+},
+{
+  pergunta: "A Revolução Neolítica foi importante porque:",
+  opcoes: ["Começou o uso de satélites", "Surgiu o comércio global", "Permitiu o desenvolvimento da agricultura", "Criou a internet"],
+  correta: 2,
+  explicacao: "Ela marcou o surgimento da agricultura e domesticação de animais."
+},
+{
+  pergunta: "Por que devemos desconfiar de manchetes exageradas?",
+  opcoes: ["Porque são engraçadas", "Porque sempre são verdade", "Porque podem ser fake news", "Porque são informativas"],
+  correta: 2,
+  explicacao: "Manchetes exageradas costumam ser iscas para fake news."
+},
+{
+  pergunta: "Qual é a principal função do Big Data?",
+  opcoes: ["Apagar dados", "Gerar poluição", "Analisar grandes quantidades de dados para decisões estratégicas", "Criar memes"],
+  correta: 2,
+  explicacao: "Big Data transforma dados em conhecimento útil."
+},
+{
+  pergunta: "Qual inovação tecnológica permitiu a expansão marítima?",
+  opcoes: ["Computador", "Astrolábio", "Trator", "Telefone"],
+  correta: 1,
+  explicacao: "O astrolábio permitia a navegação baseada nos astros."
+},
+{
+  pergunta: "Por que a agricultura foi revolucionária?",
+  opcoes: ["Tornou a comida mais saborosa", "Permitiu acúmulo de alimentos e sedentarismo", "Criou novas guerras", "Aumentou a fome"],
+  correta: 1,
+  explicacao: "A agricultura permitiu planejamento e excedente alimentar."
+},
+{
+  pergunta: "Qual país foi pioneiro nas grandes navegações?",
+  opcoes: ["Brasil", "Inglaterra", "Portugal", "Índia"],
+  correta: 2,
+  explicacao: "Portugal iniciou as explorações marítimas na era moderna."
+},
+{
+  pergunta: "O que motivava a busca por metais preciosos nas navegações?",
+  opcoes: ["Moda", "Turismo", "Riqueza e poder", "Estudos científicos"],
+  correta: 2,
+  explicacao: "Metais preciosos significavam riqueza e prestígio para os reinos europeus."
+}
+
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+
+    perguntas.forEach((item, index) => {
+      const qDiv = document.createElement("div");
+      qDiv.classList.add("question");
+
+      const qTitle = document.createElement("h3");
+      qTitle.innerText = `${index + 1}. ${item.pergunta}`;
+      qDiv.appendChild(qTitle);
+
+      const optionsDiv = document.createElement("div");
+      optionsDiv.classList.add("options");
+
+      item.opcoes.forEach((op, i) => {
+        const btn = document.createElement("button");
+        btn.innerText = op;
+        btn.addEventListener("click", () => {
+          const buttons = optionsDiv.querySelectorAll("button");
+          buttons.forEach(b => b.disabled = true);
+
+          if (i === item.correta) {
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("incorrect");
+            buttons[item.correta].classList.add("correct");
+          }
+          explanation.style.display = "block";
+        });
+        optionsDiv.appendChild(btn);
+      });
+
+      const explanation = document.createElement("div");
+      explanation.classList.add("explanation");
+      explanation.innerText = item.explicacao;
+
+      qDiv.appendChild(optionsDiv);
+      qDiv.appendChild(explanation);
+      quizContainer.appendChild(qDiv);
+    });
+  </script>
+</body>
+</html>
